@@ -14,3 +14,7 @@ regex = { version = "1.12.2", features = ["perf-dfa-full"] }
 
 [dev-dependencies]
 criterion = "0.8"
+
+[[bench]]
+name = "day01"
+harness = false

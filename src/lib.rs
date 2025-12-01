@@ -1,4 +1,4 @@
-#![feature(test)]
+#![feature(int_roundings)]
 
 use mimalloc_rust::GlobalMiMalloc;
 
