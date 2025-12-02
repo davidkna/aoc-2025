@@ -1,4 +1,5 @@
 use bstr::ByteSlice;
+use rayon::prelude::*;
 
 pub const INPUT: &[u8] = include_bytes!("../../inputs/day02.txt");
 
@@ -71,30 +72,32 @@ fn compare(a: &[u8], b: &[u8]) -> std::cmp::Ordering {
 }
 
 pub fn solve(input: &[u8], part2: bool) -> u64 {
-    let mut total = 0;
+    input
+        .split_str(b",")
+        .par_bridge()
+        .map(|range| {
+            let (start, end) = range.split_once_str(b"-").unwrap();
+            let start = start.to_vec();
+            let end = end.to_vec();
 
-    for range in input.split_str(b",") {
-        let (start, end) = range.split_once_str(b"-").unwrap();
-        let start = start.to_vec();
-        let end = end.to_vec();
+            let mut current = start.clone();
+            let mut total = 0;
 
-        let mut current = start.clone();
+            while compare(&current, &end) <= std::cmp::Ordering::Equal {
+                let invalid = if part2 {
+                    is_invalid_part2(&current)
+                } else {
+                    is_invalid_part1(&current)
+                };
 
-        while compare(&current, &end) <= std::cmp::Ordering::Equal {
-            let invalid = if part2 {
-                is_invalid_part2(&current)
-            } else {
-                is_invalid_part1(&current)
-            };
-
-            if invalid {
-                total += parse_uint(&current);
+                if invalid {
+                    total += parse_uint(&current);
+                }
+                increment(&mut current);
             }
-            increment(&mut current);
-        }
-    }
-
-    total
+            total
+        })
+        .sum()
 }
 
 pub fn part_1(input: &[u8]) -> u64 {
