@@ -10,9 +10,8 @@ fn main() {
     let day = args.day;
 
     match day {
-        1 => {
-            aoc_2025::day01::run();
-        }
+        1 => aoc_2025::day01::run(),
+        2 => aoc_2025::day02::run(),
         _ => unimplemented!("Day {day} not implemented yet"),
     }
 }

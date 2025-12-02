@@ -2,6 +2,7 @@
 name = "aoc-2025"
 version = "0.1.0"
 edition = "2024"
+publish = false
 
 [dependencies]
 bstr = "1.12.1"
@@ -17,4 +18,8 @@ criterion = "0.8"
 
 [[bench]]
 name = "day01"
+harness = false
+
+[[bench]]
+name = "day02"
 harness = false
