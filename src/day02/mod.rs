@@ -20,34 +20,14 @@ fn is_invalid_part2(s: &[u8]) -> bool {
     let len = s.len();
 
     // Check if it's made of some pattern repeated at least twice
-    for pattern_len in 1..=(len / 2) {
+    (1..=(len / 2)).any(|pattern_len| {
         if !len.is_multiple_of(pattern_len) {
-            continue;
+            return false;
         }
 
-        let repeats = len / pattern_len;
-        if repeats < 2 || !len.is_multiple_of(pattern_len) {
-            continue;
-        }
-
-        // Check if this pattern repeats throughout
-        let pattern = &s[..pattern_len];
-        let mut is_repeat = true;
-
-        for i in 1..repeats {
-            let chunk = &s[i * pattern_len..(i + 1) * pattern_len];
-            if chunk != pattern {
-                is_repeat = false;
-                break;
-            }
-        }
-
-        if is_repeat {
-            return true;
-        }
-    }
-
-    false
+        let (pattern, remainder) = s.split_at(pattern_len);
+        remainder.chunks(pattern_len).all(|chunk| chunk == pattern)
+    })
 }
 
 fn increment(s: &mut Vec<u8>) {
