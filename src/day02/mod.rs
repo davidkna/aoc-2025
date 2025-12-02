@@ -57,10 +57,8 @@ pub fn solve(input: &[u8], part2: bool) -> u64 {
         .par_bridge()
         .map(|range| {
             let (start, end) = range.split_once_str(b"-").unwrap();
-            let start = start.to_vec();
-            let end = end.to_vec();
 
-            let mut current = start.clone();
+            let mut current = start.to_vec();
             let mut total = 0;
 
             while compare(&current, &end) <= std::cmp::Ordering::Equal {
