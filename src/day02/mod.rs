@@ -19,7 +19,7 @@ fn is_invalid_part1(s: &[u8]) -> bool {
 fn is_invalid_part2(s: &[u8]) -> bool {
     let len = s.len();
 
-    // Check if it's made of some pattern repeated at least twice
+    // Check if it's made of a static pattern
     (1..=(len / 2)).any(|pattern_len| {
         if !len.is_multiple_of(pattern_len) {
             return false;
