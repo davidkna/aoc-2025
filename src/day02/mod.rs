@@ -100,14 +100,12 @@ mod tests {
     #[test]
     fn test_part_1() {
         let result = part_1(EXAMPLE);
-        println!("Result: {}", result);
         assert_eq!(result, 1227775554);
     }
 
     #[test]
     fn test_part_2() {
         let result = part_2(EXAMPLE);
-        println!("Part 2 Result: {}", result);
         assert_eq!(result, 4174379265);
     }
 }
