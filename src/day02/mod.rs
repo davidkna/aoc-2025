@@ -61,7 +61,7 @@ pub fn solve(input: &[u8], part2: bool) -> u64 {
             let mut current = start.to_vec();
             let mut total = 0;
 
-            while compare(&current, &end) <= std::cmp::Ordering::Equal {
+            while compare(&current, end) <= std::cmp::Ordering::Equal {
                 let invalid = if part2 {
                     is_invalid_part2(&current)
                 } else {

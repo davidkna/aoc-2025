@@ -11,7 +11,7 @@ fn solve_line(line: &[u8], size: usize) -> u64 {
             max_item = c;
             max_item_idx = i;
         }
-    };
+    }
     if size == 1 {
         return (max_item - b'0') as u64;
     }
@@ -21,17 +21,11 @@ fn solve_line(line: &[u8], size: usize) -> u64 {
 }
 
 pub fn part_1(input: &[u8]) -> u64 {
-    input
-        .lines()
-        .map(|line| solve_line(line, 2))
-        .sum()
+    input.lines().map(|line| solve_line(line, 2)).sum()
 }
 
 pub fn part_2(input: &[u8]) -> u64 {
-        input
-        .lines()
-        .map(|line| solve_line(line, 12))
-        .sum()
+    input.lines().map(|line| solve_line(line, 12)).sum()
 }
 
 pub fn run() {
