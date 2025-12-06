@@ -10,6 +10,9 @@ fn solve_line(line: &[u8], size: usize) -> u64 {
         if c > max_item {
             max_item = c;
             max_item_idx = i;
+            if max_item == b'9' {
+                break;
+            }
         }
     }
     if size == 1 {
