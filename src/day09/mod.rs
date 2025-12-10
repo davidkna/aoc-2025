@@ -1,6 +1,6 @@
 use bstr::ByteSlice;
+use geo::{Contains, LineString, Polygon, Rect, coord};
 use itertools::Itertools;
-use geo::{LineString, Polygon, Rect, coord, Contains};
 use rayon::prelude::*;
 
 pub const INPUT: &[u8] = include_bytes!("../../inputs/day09.txt");
@@ -27,12 +27,11 @@ pub fn part_1(input: &[u8]) -> u64 {
             let dx = x1.abs_diff(x2) + 1;
             let dy = y1.abs_diff(y2) + 1;
 
-            (dx * dy) as u64
+            dx * dy
         })
         .max()
         .unwrap()
 }
-
 
 pub fn part_2(input: &[u8]) -> u64 {
     let coords: Vec<(u64, u64)> = input
@@ -46,9 +45,10 @@ pub fn part_2(input: &[u8]) -> u64 {
 
     let polygon: Polygon<f64> = Polygon::new(
         LineString::from(
-            coords.iter()
+            coords
+                .iter()
                 .map(|&(x, y)| coord! { x: x as f64, y: y as f64 })
-                         .collect::<Vec<_>>()
+                .collect::<Vec<_>>(),
         ),
         vec![],
     );
@@ -62,7 +62,7 @@ pub fn part_2(input: &[u8]) -> u64 {
                 coord! { x: x1 as f64, y: y1 as f64 },
                 coord! { x: x2 as f64, y: y2 as f64 },
             );
-            
+
             polygon.contains(&rect).then(|| {
                 let dx = x1.abs_diff(x2) + 1;
                 let dy = y1.abs_diff(y2) + 1;

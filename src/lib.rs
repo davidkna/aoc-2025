@@ -1,4 +1,4 @@
-#![feature(int_roundings, concat_bytes)]
+#![feature(int_roundings, concat_bytes, exact_length_collection)]
 
 use mimalloc_rust::GlobalMiMalloc;
 
@@ -14,3 +14,4 @@ pub mod day06;
 pub mod day07;
 pub mod day08;
 pub mod day09;
+pub mod day10;
