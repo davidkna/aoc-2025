@@ -20,6 +20,7 @@ fn main() {
         8 => aoc_2025::day08::run(),
         9 => aoc_2025::day09::run(),
         10 => aoc_2025::day10::run(),
+        11 => aoc_2025::day11::run(),
         _ => unimplemented!("Day {day} not implemented yet"),
     }
 }
