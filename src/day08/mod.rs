@@ -21,7 +21,8 @@ pub fn part_1(input: &[u8], steps: usize) -> usize {
     let coords: Vec<(u64, u64, u64)> = input
         .lines()
         .map(|line| {
-            std::iter::Iterator::collect_array(line.splitn_str(3, ","))
+            line.splitn_str(3, ",")
+                .collect_array()
                 .map(|[x, y, z]| (parse_uint(x), parse_uint(y), parse_uint(z)))
                 .unwrap()
         })
@@ -101,7 +102,8 @@ pub fn part_2(input: &[u8]) -> u64 {
     let coords: Vec<(u64, u64, u64)> = input
         .lines()
         .map(|line| {
-            std::iter::Iterator::collect_array(line.splitn_str(3, ","))
+            line.splitn_str(3, ",")
+                .collect_array()
                 .map(|[x, y, z]| (parse_uint(x), parse_uint(y), parse_uint(z)))
                 .unwrap()
         })

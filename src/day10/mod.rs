@@ -109,13 +109,11 @@ pub fn part_2(input: &[u8]) -> u64 {
                         let coeff = button[idx] as i64;
                         z3::ast::Int::from_i64(coeff) * &vars[i]
                     })
-                    .fold(z3::ast::Int::from_i64(0), |acc, expr| acc + expr);
+                    .sum::<z3::ast::Int>();
                 opt.assert(&sum_expr.eq(z3::ast::Int::from_i64(tgt as i64)));
             }
 
-            let total_presses = vars
-                .iter()
-                .fold(z3::ast::Int::from_i64(0), |acc, var| acc + var);
+            let total_presses = vars.iter().sum::<z3::ast::Int>();
             opt.minimize(&total_presses);
 
             opt.check(&[]);
